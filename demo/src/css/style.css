@@ -32,19 +32,26 @@
 
 .shop-layout {
     display: flex;
-    padding: 15px;
     border: 1px solid #000000;
     min-width: 300px;
     margin: 10px 0;
 }
 
 .shop-layout .img {
-    flex: 1;
+    width: 250px;
+}
+.shop-layout .img img{
+    width: 100%;
 }
 .shop-layout .text {
-    flex: 2;
+    width: 250px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
+.shop-layout .text span{
+}
 .dropdown-block {
     background-color: #ffffff;
     border: 1px solid #e4e4e4;

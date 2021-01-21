@@ -8,19 +8,21 @@ class block extends Component {
   constructor(props) {
     super(props);
     this.state={ 
-      
+      currentInput: "",
+      currentList: {},
     }
-    
+    this.updateInput=this.updateInput.bind(this);
   } 
-    changeArea(area){
-      this.setState({currentArea: area})
+  updateInput(input){
+      this.setState({currentInput: input})
   }
   render(){
-    // console.log(Json)
+    console.log(Json)
     return(
       <div className="block-layout">
-        <Input alldata = {Json}/>
-        <Content />
+        {this.state.currentInput}
+        <Input alldata = {Json} updateInput = {this.updateInput}/>
+        <Content alldata = {Json} currentInput = {this.state.currentInput}/>
       </div>
     );
   }

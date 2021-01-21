@@ -6,11 +6,9 @@ class input extends Component  {
   constructor() {
     super();
     this.state = {
-      nameslist: {
-        "none" : "none"
-      },
       inputValue: "",
       outputlist: [],
+      arrayType: [],
       dropdownHide: true,
     }
     this.handleChange=this.handleChange.bind(this);
@@ -20,35 +18,49 @@ class input extends Component  {
     this.updateDropdown=this.updateDropdown.bind(this);
   }
   componentDidMount(){
-    var nameslist = Object.values(this.props.alldata).map(v=>v.item.name)
-   
-    this.setState({nameslist: nameslist});
+    let arrayType = []
+    for(let i in this.props.alldata){
+      let obj = {
+        'imgurl': '',
+        'id': '',
+        'name': ''
+      }
+      obj['imgurl'] = this.props.alldata[i].detail.image;
+      obj['id'] = i;
+      obj['name'] = this.props.alldata[i].item.name;
+      arrayType.push(obj)
+    }
+    this.setState({arrayType: arrayType});
   }
+  // when you are typing in input
   handleChange(event){
-    // console.log(event.target.value)
     this.setState({inputValue: event.target.value});
     this.updateDropdown(event.target.value);
   }
+  // when input is foucsed
   onFocus(event){
     this.setState({dropdownHide: false})
   }
+  // when input isn't focused
   onBlur(event){
     this.setState({dropdownHide: true})
   }
+  // update dropdown block
   updateDropdown(input){
-    var filter = this.state.nameslist.filter(v=>{
-      if (v.indexOf(input)>0){
+    var filter = this.state.arrayType.filter(v=>{
+      if (v.name.indexOf(input)>0){
         return v
       }
     })
     this.setState({outputlist: filter})
   }
+  // click search button
   search(){
-   
+   this.props.updateInput(this.state.inputValue)
   }
   render(){
     const outputlist = this.state.outputlist.map((v, idx)=>{
-      return <DropdownUnit key={idx} text = {v}/>
+      return <DropdownUnit key={v.id} text = {v.name}/>
     })
     return (
       <div className="input-layout">

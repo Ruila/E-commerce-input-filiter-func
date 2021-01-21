@@ -17,10 +17,13 @@ class block extends Component {
     return(
       <div className="shop-layout">
         <div className="img">
-          img
+          <img src={this.props.imgurl} />
         </div>
         <div className="text">
-          text
+          <span>
+            {this.props.title}
+          </span>
+          
         </div>
       </div>
     );

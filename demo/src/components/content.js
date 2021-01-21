@@ -1,10 +1,9 @@
 import '../css/style.css';
-import Input from './input.js';
-import Content from './content';
+import Shop from './shop.js'
 import React, { Component } from 'react';
 
 
-class block extends Component {
+class content extends Component {
   constructor(props) {
     super(props);
     this.state={ 
@@ -17,12 +16,12 @@ class block extends Component {
   }
   render(){
     return(
-      <div className="block-layout">
-        <Input />
-        <Content />
+      <div className="content-layout">
+        <Shop />
+        <Shop />
       </div>
     );
   }
 }
 
-export default block;
+export default content;

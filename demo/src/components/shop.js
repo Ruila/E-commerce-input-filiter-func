@@ -1,6 +1,4 @@
 import '../css/style.css';
-import Input from './input.js';
-import Content from './content';
 import React, { Component } from 'react';
 
 
@@ -17,9 +15,13 @@ class block extends Component {
   }
   render(){
     return(
-      <div className="block-layout">
-        <Input />
-        <Content />
+      <div className="shop-layout">
+        <div className="img">
+          img
+        </div>
+        <div className="text">
+          text
+        </div>
       </div>
     );
   }

@@ -2,7 +2,7 @@ import '../css/style.css';
 import Input from './input.js';
 import Content from './content';
 import React, { Component } from 'react';
-
+import Json from '../json/biggo_sitetype.json'
 
 class block extends Component {
   constructor(props) {
@@ -16,9 +16,10 @@ class block extends Component {
       this.setState({currentArea: area})
   }
   render(){
+    // console.log(Json)
     return(
       <div className="block-layout">
-        <Input />
+        <Input alldata = {Json}/>
         <Content />
       </div>
     );

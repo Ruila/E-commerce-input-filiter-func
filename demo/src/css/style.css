@@ -1,6 +1,7 @@
 .input-layout {
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 .input-layout input {
@@ -42,4 +43,38 @@
 }
 .shop-layout .text {
     flex: 2;
+}
+
+.dropdown-block {
+    background-color: #ffffff;
+    border: 1px solid #e4e4e4;
+    width: 324px;
+    height: 150px;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    overflow: auto;
+}
+
+.input-component {
+    width: 370px;
+    display: flex;
+    position: relative;
+}
+
+.drowpUnit-layout h5 {
+    margin: 0;
+}
+
+.drowpUnit-layout {
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+.drowpUnit-layout:hover {
+    background-color: aquamarine;
+}
+
+.hide {
+    display: none;
 }

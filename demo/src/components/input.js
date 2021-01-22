@@ -46,7 +46,7 @@ class input extends Component  {
     }
     this.setState({inputValue: event.target.value});
     this.updateDropdown(event.target.value);
-    console.log('check reffff', event.target.value.length)
+    console.log('check input', event.target.value)
   }
 
   // when input is foucsed
@@ -76,7 +76,7 @@ class input extends Component  {
         return v
       }
     })
-    console.log('current filter', filter.length, this.state.arrayType.length)
+    // console.log('current filter', this.state.inputValue, filter)
     if(filter.length == this.state.arrayType.length){
       this.setState({dropdownHide: true})
     } else if (filter.length >0){
@@ -88,7 +88,13 @@ class input extends Component  {
   // click search button
   search(){
   //  this.props.updateInput(this.state.inputValue)
-   this.props.updateCurrentList(this.state.outputlist)
+  var filter = this.state.arrayType.filter(v=>{
+    if (v.name.indexOf(this.state.inputValue)>=0){
+      return v
+    }
+  })
+ 
+  this.props.updateCurrentList(filter)
   }
   suggestionSearch(input){
     var filter = this.state.arrayType.filter(v=>{

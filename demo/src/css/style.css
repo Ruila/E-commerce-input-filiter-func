@@ -16,6 +16,7 @@
 
 .input-layout button {
     height: 40px;
+    cursor: pointer;
 }
 
 .block-layout {
@@ -76,6 +77,7 @@
 .drowpUnit-layout {
     padding: 10px;
     background-color: #ffffff;
+    cursor: pointer;
 }
 
 .drowpUnit-layout:hover {
@@ -96,6 +98,7 @@
     position: absolute;
     top: 5px;
     right: 50px;
+    cursor: pointer;
 }
 
 .clear span{

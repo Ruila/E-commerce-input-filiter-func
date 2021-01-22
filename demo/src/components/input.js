@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 class input extends Component  {
   constructor() {
     super();
+    this.textInput = React.createRef();
     this.state = {
       inputValue: "",
       outputlist: [],
@@ -39,23 +40,25 @@ class input extends Component  {
   handleChange(event){
     if(event.target.value.length>0){
       this.setState({clearHide: false})
-    } else {
+    } else if (event.target.value.length == 0){
       this.setState({clearHide: true})
+      this.setState({dropdownHide: true})
     }
     this.setState({inputValue: event.target.value});
     this.updateDropdown(event.target.value);
+    console.log('check reffff', event.target.value.length)
   }
 
   // when input is foucsed
   onFocus(event){
-    this.setState({dropdownHide: false})
+    
   }
 
   // when input isn't focused
   onBlur(event){
-    setTimeout(()=>{
-      this.setState({dropdownHide: true})
-    }, 500)
+    // setTimeout(()=>{
+    //   this.setState({dropdownHide: true})
+    // }, 500)
     // this.setState({dropdownHide: true})
   }
 
@@ -63,6 +66,7 @@ class input extends Component  {
   clear(){
     this.setState({inputValue: ""});
     this.setState({clearHide: true})
+    this.setState({dropdownHide: true})
   }
 
   // update dropdown block
@@ -72,6 +76,12 @@ class input extends Component  {
         return v
       }
     })
+    console.log('current filter', filter.length, this.state.arrayType.length)
+    if(filter.length == this.state.arrayType.length){
+      this.setState({dropdownHide: true})
+    } else if (filter.length >0){
+      this.setState({dropdownHide: false})
+    }
     this.setState({outputlist: filter})
   }
 
@@ -88,6 +98,7 @@ class input extends Component  {
     })
    
     this.props.updateCurrentList(filter)
+    this.setState({dropdownHide: true})
   }
   render(){
     const outputlist = this.state.outputlist.map((v, idx)=>{
@@ -96,7 +107,7 @@ class input extends Component  {
     return (
       <div className="input-layout">
         <div className="input-component">
-          <input type="text" value={this.state.inputValue} onFocus={this.onFocus} onBlur={this.onBlur} onChange={this.handleChange}></input>
+          <input type="text" ref={this.textInput} value={this.state.inputValue} onFocus={this.onFocus} onBlur={this.onBlur} onChange={this.handleChange}></input>
           <button onClick={this.search}>
             查詢
           </button>

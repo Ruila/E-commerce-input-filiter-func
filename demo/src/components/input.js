@@ -16,6 +16,7 @@ class input extends Component  {
     this.onBlur=this.onBlur.bind(this);
     this.search=this.search.bind(this);
     this.updateDropdown=this.updateDropdown.bind(this);
+    this.suggestionSearch=this.suggestionSearch.bind(this);
   }
   componentDidMount(){
     let arrayType = []
@@ -43,12 +44,15 @@ class input extends Component  {
   }
   // when input isn't focused
   onBlur(event){
-    this.setState({dropdownHide: true})
+    setTimeout(()=>{
+      this.setState({dropdownHide: true})
+    }, 30)
+    // this.setState({dropdownHide: true})
   }
   // update dropdown block
   updateDropdown(input){
     var filter = this.state.arrayType.filter(v=>{
-      if (v.name.indexOf(input)>0){
+      if (v.name.indexOf(input)>=0){
         return v
       }
     })
@@ -56,11 +60,21 @@ class input extends Component  {
   }
   // click search button
   search(){
-   this.props.updateInput(this.state.inputValue)
+  //  this.props.updateInput(this.state.inputValue)
+   this.props.updateCurrentList(this.state.outputlist)
+  }
+  suggestionSearch(input){
+    var filter = this.state.arrayType.filter(v=>{
+      if (v.name.indexOf(input)>=0){
+        return v
+      }
+    })
+   
+    this.props.updateCurrentList(filter)
   }
   render(){
     const outputlist = this.state.outputlist.map((v, idx)=>{
-      return <DropdownUnit key={v.id} text = {v.name}/>
+      return <DropdownUnit key={v.id} text = {v.name} fastSearch = {this.suggestionSearch}/>
     })
     return (
       <div className="input-layout">

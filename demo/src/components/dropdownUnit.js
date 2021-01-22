@@ -8,15 +8,17 @@ class dropdownUnit extends Component {
     this.state={ 
      
     }
-    
+    this.fastSearch=this.fastSearch.bind(this);
   }
   componentDidMount(){
   }
-
+  fastSearch(){
+    this.props.fastSearch(this.props.text)
+  }
   render(){
     return(
-      <div className="drowpUnit-layout">
-          <h5>{this.props.text}</h5>
+      <div className="drowpUnit-layout" onClick = {this.fastSearch}>
+          <h5 onClick = {this.fastSearch}>{this.props.text}</h5>
       </div>
     );
   }

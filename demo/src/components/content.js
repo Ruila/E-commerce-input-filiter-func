@@ -9,7 +9,7 @@ class content extends Component {
     this.state={ 
       outputlist: []
     }
-    
+    this.updateCurrentList=this.updateCurrentList.bind(this);
   } 
   componentDidMount(){
     // initial outputlist
@@ -27,9 +27,18 @@ class content extends Component {
     }
     this.setState({outputlist: arrayType});
   }
+  componentDidUpdate(prevProps, prevState, snapshot){
+    if(prevProps.currentList!==this.props.currentList){
+      // console.log("inside componentDidUpdate", prevProps.currentList, this.props.currentList)
+      this.updateCurrentList(this.props.currentList)
+      }
+  }
+  updateCurrentList(list){
+    this.setState({outputlist: list})
+  }
   render(){
     const outputlist = this.state.outputlist.map(v=>{
-      return <Shop imgurl={v.imgurl} title={v.name} />
+      return <Shop key={v.id} imgurl={v.imgurl} title={v.name} />
     })
     return(
       <div className="content-layout">

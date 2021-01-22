@@ -9,20 +9,24 @@ class block extends Component {
     super(props);
     this.state={ 
       currentInput: "",
-      currentList: {},
+      currentList: [],
     }
     this.updateInput=this.updateInput.bind(this);
-  } 
+    this.updateCurrentList=this.updateCurrentList.bind(this);
+  }
+  componentDidMount(){
+  }
   updateInput(input){
       this.setState({currentInput: input})
   }
+  updateCurrentList(list){
+    this.setState({currentList: list})
+}
   render(){
-    console.log(Json)
     return(
       <div className="block-layout">
-        {this.state.currentInput}
-        <Input alldata = {Json} updateInput = {this.updateInput}/>
-        <Content alldata = {Json} currentInput = {this.state.currentInput}/>
+        <Input alldata = {Json} updateInput = {this.updateInput} updateCurrentList = {this.updateCurrentList}/>
+        <Content alldata = {Json} currentInput = {this.state.currentInput} currentList = {this.state.currentList}/>
       </div>
     );
   }

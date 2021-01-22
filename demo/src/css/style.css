@@ -83,5 +83,22 @@
 }
 
 .hide {
-    display: none;
+    display: none!important;
+}
+
+.clear {
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #e4e4e4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5px;
+    right: 50px;
+}
+
+.clear span{
+    color: #000000;
+    font-size: 14px;
 }

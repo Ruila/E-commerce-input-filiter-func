@@ -42,6 +42,7 @@ class content extends Component {
     })
     return(
       <div className="content-layout">
+         <h5>共有{this.state.outputlist.length}間商店</h5>
         {outputlist}
       </div>
     );

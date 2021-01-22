@@ -10,6 +10,7 @@ class input extends Component  {
       outputlist: [],
       arrayType: [],
       dropdownHide: true,
+      clearHide: true,
     }
     this.handleChange=this.handleChange.bind(this);
     this.onFocus=this.onFocus.bind(this);
@@ -17,6 +18,7 @@ class input extends Component  {
     this.search=this.search.bind(this);
     this.updateDropdown=this.updateDropdown.bind(this);
     this.suggestionSearch=this.suggestionSearch.bind(this);
+    this.clear=this.clear.bind(this);
   }
   componentDidMount(){
     let arrayType = []
@@ -35,20 +37,34 @@ class input extends Component  {
   }
   // when you are typing in input
   handleChange(event){
+    if(event.target.value.length>0){
+      this.setState({clearHide: false})
+    } else {
+      this.setState({clearHide: true})
+    }
     this.setState({inputValue: event.target.value});
     this.updateDropdown(event.target.value);
   }
+
   // when input is foucsed
   onFocus(event){
     this.setState({dropdownHide: false})
   }
+
   // when input isn't focused
   onBlur(event){
     setTimeout(()=>{
       this.setState({dropdownHide: true})
-    }, 30)
+    }, 500)
     // this.setState({dropdownHide: true})
   }
+
+  // clear string in input and hide clear btn
+  clear(){
+    this.setState({inputValue: ""});
+    this.setState({clearHide: true})
+  }
+
   // update dropdown block
   updateDropdown(input){
     var filter = this.state.arrayType.filter(v=>{
@@ -58,6 +74,7 @@ class input extends Component  {
     })
     this.setState({outputlist: filter})
   }
+
   // click search button
   search(){
   //  this.props.updateInput(this.state.inputValue)
@@ -83,6 +100,10 @@ class input extends Component  {
           <button onClick={this.search}>
             查詢
           </button>
+          <div className={`clear ${this.state.clearHide?'hide':''}`} onClick={this.clear}>
+            <span>清除</span>
+          </div>
+          
           <div className={`dropdown-block ${this.state.dropdownHide?'hide':''}`}>
            {outputlist}
           </div>
